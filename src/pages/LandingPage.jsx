@@ -1,15 +1,52 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function LandingPage({ userName, setUserName }) {
   const [inputName, setInputName] = useState(userName)
   const [inputPassword, setInputPassword] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const isAuthenticated = document.cookie.split('; ').find(row => row.startsWith('isAuthenticated='))?.split('=')[1]
+    const savedName = document.cookie.split('; ').find(row => row.startsWith('userName='))?.split('=')[1]
+    
+    if (isAuthenticated === 'true') {
+      if (savedName) setUserName(decodeURIComponent(savedName))
+      navigate('/welcome', { replace: true })
+    }
+  }, [navigate, setUserName])
 
   const handleEnter = (e) => {
     e.preventDefault()
+    setErrorMsg('')
+    
     const trimmed = inputName.trim()
-    if (trimmed) setUserName(trimmed)
+    
+    // Basic validation
+    if (!trimmed) {
+      setErrorMsg('Please enter your name.')
+      return
+    }
+
+    // Password validation rule: min 6 chars, at least 1 number
+    if (inputPassword.length < 6) {
+      setErrorMsg('Password must be at least 6 characters.')
+      return
+    }
+    if (!/\d/.test(inputPassword)) {
+      setErrorMsg('Password must contain at least one number.')
+      return
+    }
+
+    // Set simple cookie authentication
+    const expiry = new Date()
+    expiry.setDate(expiry.getDate() + 7) // cookie valid for 7 days
+    
+    document.cookie = `isAuthenticated=true; expires=${expiry.toUTCString()}; path=/`
+    document.cookie = `userName=${encodeURIComponent(trimmed)}; expires=${expiry.toUTCString()}; path=/`
+
+    setUserName(trimmed)
     navigate('/welcome')
   }
 
@@ -88,13 +125,19 @@ function LandingPage({ userName, setUserName }) {
                   type="password"
                   value={inputPassword}
                   onChange={(e) => setInputPassword(e.target.value)}
-                  placeholder="Enter password (demo)"
+                  placeholder="Enter password"
                   autoComplete="off"
                 />
               </div>
 
+              {errorMsg && (
+                <div style={{ color: '#ff4d4f', fontSize: '0.875rem', marginBottom: '1rem', marginTop: '-0.5rem' }}>
+                  {errorMsg}
+                </div>
+              )}
+
               <button className="landing-btn" type="submit">
-                Login (Demo) →
+                Login
               </button>
             </form>
 

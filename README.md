@@ -2,7 +2,7 @@
 
 A modern, feature-rich habit tracking application built with React + Vite. Track your daily habits, build streaks, and achieve consistency with a beautiful, intuitive interface.
 
-## ✨ Features
+## Features
 
 ### Core Features
 - **4 Professional Pages**: Welcome, Dashboard, Habits Management, and Insights
@@ -35,7 +35,7 @@ A modern, feature-rich habit tracking application built with React + Vite. Track
 - **Clear Typography**: Readable, modern font hierarchy
 - **Intuitive Navigation**: Easy access to all features
 
-## 🚀 Pages Overview
+## Pages Overview
 
 ### 1. Welcome Page
 - Hero section with animated visuals
@@ -66,7 +66,7 @@ A modern, feature-rich habit tracking application built with React + Vite. Track
 - Perfect day indicators
 - Detailed performance analysis
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 18
 - **Build Tool**: Vite
@@ -75,7 +75,7 @@ A modern, feature-rich habit tracking application built with React + Vite. Track
 - **Storage**: Browser localStorage
 - **Code Quality**: ESLint
 
-## 💻 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -108,7 +108,7 @@ npm run build
 npm run lint
 ```
 
-## 📊 Project Structure
+## Project Structure
 
 ```
 src/
@@ -125,7 +125,7 @@ src/
 └── index.css                # Global styles
 ```
 
-## 🎨 Design Highlights
+## Design Highlights
 
 - **Color Palette**: Warm oranges and browns (#f58f29, #7a4a12)
 - **Typography**: Clear hierarchy with responsive sizing
@@ -133,21 +133,21 @@ src/
 - **Spacing**: Generous padding and gap values for readability
 - **Accessibility**: Semantic HTML and ARIA labels
 
-## 🔄 Data Flow
+## Data Flow
 
 1. All habits stored in App component state
 2. Automatically persisted to localStorage
 3. Synced across all pages in real-time
 4. Daily completion tracked by date keys (YYYY-MM-DD)
 
-## 💾 Browser Compatibility
+## Browser Compatibility
 
 Works on all modern browsers with localStorage support:
 - Chrome/Edge (v90+)
 - Firefox (v88+)
 - Safari (v14+)
 
-## 🎯 Future Enhancement Ideas
+## Future Enhancement Ideas
 
 - Export habit data as CSV
 - Mobile app with notifications
@@ -156,10 +156,3 @@ Works on all modern browsers with localStorage support:
 - Habit templates
 - Goal setting and milestones
 
-## 📝 License
-
-MIT - Feel free to use this project for personal or commercial purposes.
-
----
-
-**Built with ❤️ to help you build better habits, one day at a time.**

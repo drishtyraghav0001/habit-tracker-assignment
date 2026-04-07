@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import HabitsPage from './pages/HabitsPage'
 import HomePage from './pages/HomePage'
@@ -26,11 +26,28 @@ const loadSavedHabits = () => {
 
 function AppLayout() {
   const location = useLocation()
+  const navigate = useNavigate()
   const isLanding = location.pathname === '/' || location.pathname === '/landing'
 
   const [habits, setHabits] = useState(loadSavedHabits)
   const [habitInput, setHabitInput] = useState('')
-  const [userName, setUserName] = useState('Drishty Raghav')
+  const [userName, setUserName] = useState('Demo User')
+
+  useEffect(() => {
+    // Read user name from cookie if available
+    const savedName = document.cookie.split('; ').find(row => row.startsWith('userName='))?.split('=')[1];
+    if (savedName) {
+      setUserName(decodeURIComponent(savedName));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Basic route protection checking the cookie
+    const isAuthenticated = document.cookie.split('; ').find(row => row.startsWith('isAuthenticated='))?.split('=')[1] === 'true';
+    if (!isAuthenticated && !isLanding) {
+      navigate('/landing');
+    }
+  }, [isLanding, navigate]);
 
   useEffect(() => {
     localStorage.setItem('habit-tracker-habits', JSON.stringify(habits))
