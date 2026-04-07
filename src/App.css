@@ -2024,6 +2024,53 @@
   box-shadow: 0 0 0 4px rgba(245, 143, 41, 0.1);
 }
 
+.landing-input--error {
+  border-color: #ff4d4f !important;
+  box-shadow: 0 0 0 4px rgba(255, 77, 79, 0.1) !important;
+}
+
+.landing-field-error {
+  font-size: 0.8rem;
+  color: #ff4d4f;
+  font-weight: 600;
+  margin-top: -2px;
+}
+
+.landing-field-hint {
+  font-size: 0.78rem;
+  color: #a07850;
+  margin-top: -2px;
+}
+
+.landing-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.landing-input--password {
+  padding-right: 48px;
+}
+
+.landing-toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.landing-toggle-password:hover {
+  opacity: 1;
+}
+
 .landing-btn {
   width: 100%;
   padding: 16px;
